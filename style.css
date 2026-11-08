@@ -1,0 +1,184 @@
+:root {
+    /* Primary newspaper palette */
+    --news-paper: #F4F0E6;
+    --news-ink: #17212B;
+    --news-white: #FFFFFF;
+
+    /* Press Red family */
+    --press-50: #FBE9E6;
+    --press-100: #F3C9C3;
+    --press-200: #E99B91;
+    --press-300: #D96C60;
+    --press-400: #C83D32;
+    --press-500: #A92F27;
+    --press-600: #81251F;
+
+    /* Semantic assignments */
+    --accent-primary: var(--press-400);
+    --accent-hover: var(--press-500);
+    --accent-active: var(--press-600);
+
+    --accent-soft-bg: var(--press-50);
+    --accent-soft-text: var(--press-500);
+    --accent-border: var(--press-100);
+}
+
+/* Main page background */
+body {
+    background-color: var(--news-paper);
+    color: var(--news-ink);
+}
+
+/* Navbar */
+.news-navbar {
+    background-color: var(--news-paper);
+    border-bottom: 2px solid var(--news-ink);
+    padding: 14px 0;
+}
+
+/* Newspaper branding */
+.news-brand {
+    color: var(--news-ink);
+    font-family: Georgia, serif;
+    font-size: 1.65rem;
+    font-weight: 800;
+    letter-spacing: -0.8px;
+}
+
+.news-brand:hover {
+    color: var(--news-red);
+}
+
+.news-brand span {
+    color: var(--news-red);
+}
+
+/* Navigation links */
+.news-navbar .nav-link {
+    color: var(--news-ink);
+    font-weight: 600;
+    margin: 0 8px;
+    transition: color 0.2s ease;
+}
+
+
+/* Search input */
+.news-search .form-control {
+    background-color: #FFFFFF;
+    border: 1px solid #D6D0C4;
+    color: var(--news-ink);
+    border-radius: 5px;
+    min-width: 200px;
+}
+
+.news-search .form-control:focus {
+    border-color: var(--news-red);
+    box-shadow: 0 0 0 0.2rem rgba(200, 61, 50, 0.15);
+}
+
+/* Live News badge */
+.live-badge {
+    background: var(--press-50);
+    color: var(--press-500);
+    border: 1px solid var(--press-100);
+    font-size: 0.7rem;
+    font-weight: 800;
+    letter-spacing: 0.8px;
+    padding: 5px 10px;
+    border-radius: 4px;
+}
+
+/* Search button */
+.news-search-btn {
+    background: var(--press-500);
+    border: 1px solid var(--press-500);
+    color: var(--news-white);
+}
+
+.news-search-btn:hover {
+    background: var(--press-600);
+    border-color: var(--press-600);
+    color: var(--news-white);
+}
+
+/* Active navigation */
+.news-navbar .nav-link.active {
+    color: var(--press-400);
+    font-weight: 700;
+}
+
+/* Subtle hover */
+.news-navbar .nav-link:hover {
+    color: var(--press-500);
+}
+
+/* Breaking news */
+.breaking-news {
+    color: var(--press-500);
+    border-left: 3px solid var(--press-400);
+    background: var(--press-50);
+}
+
+* Mobile toggler */
+.news-navbar .navbar-toggler {
+    border-color: var(--news-ink);
+}
+
+.news-navbar .navbar-toggler:focus {
+    box-shadow: 0 0 0 0.2rem rgba(200, 61, 50, 0.2);
+}
+
+
+/* Skeleton card */
+.news-skeleton-card {
+    background-color: #FFFEFA;
+    border: 1px solid #DED8CC;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+/* Image placeholder */
+.news-skeleton-image {
+    height: 180px;
+    overflow: hidden;
+    background-color: #E8E2D7;
+}
+
+/* Common skeleton placeholders */
+.news-skeleton-card .placeholder {
+    border-radius: 4px;
+    background-color: #DCD5C9;
+}
+
+/* Category placeholder */
+.news-skeleton-category {
+    height: 12px;
+    background-color: var(--press-100) !important;
+}
+
+/* Title and description */
+.news-skeleton-line {
+    height: 13px;
+}
+
+/* CTA placeholder */
+.news-skeleton-button {
+    height: 34px;
+    border-radius: 5px;
+    background-color: var(--press-100) !important;
+}
+
+/* Smooth loading animation */
+.news-skeleton-card .placeholder {
+    animation: news-skeleton-pulse 1.8s ease-in-out infinite;
+}
+
+@keyframes news-skeleton-pulse {
+    0%, 100% {
+        opacity: 0.55;
+    }
+
+    50% {
+        opacity: 1;
+    }
+}
