@@ -19,7 +19,7 @@ const fetchNews = async (query, pageNo) => {
         `/api/news?q=${encodeURIComponent(query)}&page=${pageNo}`
     );
 
-    const data = await response.json();
+    const data = await response.json();    
 
     if (!response.ok) {
         throw new Error(data.message || "Unable to fetch news");
@@ -36,15 +36,15 @@ const fetchNews = async (query, pageNo) => {
     pre.href = `?q=${query}&page=${pageNo - 1}`;
     next.href = `?q=${query}&page=${pageNo + 1}`;
     let str = "";
-    for (let item of data.articles) {
-        if (!item.title || !item.description || !item.urlToImage || !item.url) {
+    for (let item of data.news) {        
+        if (!item.title || !item.description || !item.image || !item.url) {
             continue;
         }
         str +=
             `
                     <div class="col-md-4 col-sm-6 mb-4 d-flex align-items-stretch">
                         <div class="card shadow-sm h-100">
-                            <img src="${item.urlToImage}" class="card-img-top" alt="News Image">
+                            <img src="${item.image}" class="card-img-top" alt="News Image">
                             <div class="card-body d-flex flex-column">
                                 <h5 class="card-title">${item.title}</h5>
                                 <p class="card-text flex-grow-1">${item.description || "No description available."}</p>

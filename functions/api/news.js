@@ -1,28 +1,35 @@
 
-const NEWS_API_URL = "https://newsapi.org/v2/everything";
+const CURRENTS_API_URL =
+    "https://api.currentsapi.services/v1/search";
 
 export async function onRequestGet({ request, env }) {
 
-    // 1. Get the secret API key from the environment.
-    const apiKey = env.NEWS_API_KEY;
+    // 1. Retrieve the private API key.
+    const apiKey = env.CURRENTS_API_KEY;
 
     if (!apiKey) {
         return Response.json(
-            { status: "error", message: "News API key is not configured." },
+            {
+                status: "error",
+                message: "Currents API key is not configured."
+            },
             { status: 500 }
         );
     }
 
-    // 2. Read query parameters from the browser request.
+    // 2. Read browser request parameters.
     const requestUrl = new URL(request.url);
 
     const query = requestUrl.searchParams.get("q")?.trim();
-    const page = Number(requestUrl.searchParams.get("page") ?? "1");
 
-    // 3. Validate incoming parameters.
+    const page = Number(
+        requestUrl.searchParams.get("page") ?? "1"
+    );
+
+    // 3. Validate parameters.
     if (!query) {
         return Response.json(
-            { status: "error", message: "A search query is required." },
+            { status: "error", message: "Search query is required." },
             { status: 400 }
         );
     }
@@ -34,36 +41,37 @@ export async function onRequestGet({ request, env }) {
         );
     }
 
-    if (!Number.isInteger(page) || page < 1) {
+    if (!Number.isInteger(page) || page < 1 || page > 180) {
         return Response.json(
             { status: "error", message: "Invalid page number." },
             { status: 400 }
         );
     }
 
-    // 4. Construct the NewsAPI request.
-    const newsUrl = new URL(NEWS_API_URL);
+    // 4. Construct Currents API request.
+    const currentsUrl = new URL(CURRENTS_API_URL);
 
-    newsUrl.searchParams.set("q", query);
-    newsUrl.searchParams.set("page", String(page));
-    newsUrl.searchParams.set("pageSize", "10");
+    currentsUrl.searchParams.set("keywords", query);
+    currentsUrl.searchParams.set("page_number", String(page));
+    currentsUrl.searchParams.set("page_size", "10");
+    currentsUrl.searchParams.set("language", "en");
 
     try {
 
-        // 5. Request news using the private API key.
-        const newsResponse = await fetch(newsUrl, {
+        // 5. Fetch news using server-side authentication.
+        const response = await fetch(currentsUrl, {
             headers: {
-                "X-Api-Key": apiKey,
+                "Authorization": `Bearer ${apiKey}`,
                 "Accept": "application/json",
                 "User-Agent": "BulletinNewsDaily/1.0"
             }
         });
 
-        const newsData = await newsResponse.json();
+        // 6. Read and return the provider response.
+        const data = await response.json();
 
-        // 6. Return NewsAPI's response to the browser.
-        return Response.json(newsData, {
-            status: newsResponse.status,
+        return Response.json(data, {
+            status: response.status,
             headers: {
                 "Cache-Control": "no-store"
             }
@@ -71,11 +79,11 @@ export async function onRequestGet({ request, env }) {
 
     } catch (error) {
 
-        // 7. Handle network or response errors.
+        // 7. Handle connection failures.
         return Response.json(
             {
                 status: "error",
-                message: "Unable to connect to the news provider."
+                message: "Unable to connect to Currents API."
             },
             { status: 502 }
         );
