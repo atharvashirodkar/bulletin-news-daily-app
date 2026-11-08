@@ -7,58 +7,99 @@
     <title>The Bulletin New Daily</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
-        <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg news-navbar">
-        <div class="container-fluid px-4">
 
-            <a class="navbar-brand news-brand" href="#">
-                The Bulletin <span>Daily</span>
-            </a>
+    <header class="news-header">
 
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-                aria-label="Toggle navigation">
+        <div class="container-fluid px-3 px-lg-4">
 
-                <span class="navbar-toggler-icon"></span>
-            </button>
+            <!-- 1. Newspaper Masthead -->
+            <div class="news-masthead text-center">
+                <a href="/" class="news-brand">
+                    The Bulletin Daily
+                </a>
+                <div class="news-brand-accent"></div>
+                <p class="news-tagline">
+                    YOUR DAILY NEWS BRIEFING
+                </p>
+            </div>
 
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <!-- 2. Search Bar -->
+            <div class="news-search-row">
 
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <form class="news-search-form" role="search" method="GET">
 
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">
-                            Home
-                        </a>
-                    </li>
+                    <div class="input-group">
 
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">
-                            Weather
-                        </a>
-                    </li>
+                        <span class="input-group-text news-search-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" aria-hidden="true">
+                                <circle cx="11" cy="11" r="8"></circle>
+                                <path d="m21 21-4.35-4.35"></path>
+                            </svg>
+                        </span>
 
-                </ul>
+                        <input class="form-control" type="search" name="query"
+                            placeholder="Search articles, topics and headlines..." aria-label="Search news">
 
-                <form class="d-flex news-search" role="search">
+                        <input type="hidden" name="pageno" value="1">
 
-                    <input class="form-control me-2" name="query" type="search" placeholder="Search news..."
-                        aria-label="Search">
+                        <button class="btn news-search-btn" type="submit">
+                            Search
+                        </button>
 
-                    <input name="pageno" type="hidden" value="1">
-
-                    <button class="btn news-search-btn" type="submit">
-                        Search
-                    </button>
+                    </div>
 
                 </form>
 
             </div>
+
+            <!-- 3. Navigation Options -->
+            <nav class="navbar navbar-expand-md news-navigation">
+
+                <div class="container-fluid justify-content-center p-0">
+
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#newsNavigation" aria-controls="newsNavigation" aria-expanded="false"
+                        aria-label="Toggle navigation">
+
+                        <span class="navbar-toggler-icon"></span>
+
+                    </button>
+
+                    <div class="collapse navbar-collapse justify-content-center" id="newsNavigation">
+                        <ul class="navbar-nav news-nav-links">
+
+                            <li class="nav-item">
+                                <a class="nav-link active" aria-current="page" href="/">
+                                    Home
+                                </a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link" href="/weather">
+                                    Weather
+                                </a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link" href="/latest">
+                                    Latest
+                                </a>
+                            </li>
+
+                        </ul>
+                    </div>
+
+                </div>
+            </nav>
         </div>
-    </nav>
+    </header>
+
     <div class="container my-4">
         <div class="row" id="content">
         </div>
@@ -78,81 +119,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q" crossorigin="anonymous">
         </script>
-    <Script>
-        let query;
-        let pageNo;
-        let articlesPerPage;
-        let totalPages;
-        if (window.location.search.split("?").length > 1) {
-            query = window.location.search.split('?')[1].split('&')[0].split('=')[1];
-            page = parseInt(window.location.search.split('?')[1].split('&')[1].split('=')[1]);
-        } else {
-            query = "trending";
-            page = 1;
-        }
-        console.log(window.location.search);
-        console.log(query, page);
-
-        let content =
-            `
-            <div class="col-md-4 col-sm-6 mb-4">
-                <div class="card shadow-sm">
-                    <div class="card-img-top placeholder-glow" style="height: 180px; background: #e9ecef;"></div>
-                    <div class="card-body">
-                        <h5 class="card-title placeholder-glow">
-                            <span class="placeholder col-8"></span>
-                        </h5>
-                        <p class="card-text placeholder-glow">
-                            <span class="placeholder col-12"></span>
-                            <span class="placeholder col-10"></span>
-                            <span class="placeholder col-6"></span>
-                        </p>
-                        <a href="#" class="btn btn-primary disabled placeholder col-6"></a>
-                    </div>
-                </div>
-            </div>
-                    `;
-        let contentRepeatation = "";
-        for (let count = 0; count < 6; count++) {
-            contentRepeatation += content
-        }
-        document.getElementById("content").innerHTML = contentRepeatation;
-
-
-        const fetchNews = async (query, pageNo) => {
-            //In place of below My_News_API_KEY using my own API key which you can get by registering on newsapi.org
-            let a = await fetch(`http://localhost:8080/api?q=${query}&apiKey=${env.News_API_KEY}&pageSize=10&page=${pageNo}`);
-            let data = await a.json();
-            console.log(data);
-            totalPages = Math.ceil(data.totalResults / articlesPerPage);
-            pre.href = `?q=${query}&page=${pageNo - 1}`;
-            next.href = `?q=${query}&page=${pageNo + 1}`;
-
-            let str = "";
-            for (let item of data.articles) {
-                if (!item.title || !item.description || !item.urlToImage || !item.url) {
-                    continue;
-                }
-                str +=
-                    `
-                    <div class="col-md-4 col-sm-6 mb-4 d-flex align-items-stretch">
-                        <div class="card shadow-sm h-100">
-                            <img src="${item.urlToImage}" class="card-img-top" alt="News Image">
-                            <div class="card-body d-flex flex-column">
-                                <h5 class="card-title">${item.title}</h5>
-                                <p class="card-text flex-grow-1">${item.description || "No description available."}</p>
-                                <a href="${item.url}" target="_blank" class="btn btn-primary mt-auto">Read More...</a>
-                            </div>
-                        </div>
-                    </div>
-                `;
-            }
-
-            document.getElementById("content").innerHTML = str;
-        }
-
-        fetchNews(query, page);
-    </Script>
+    <script src="script.js"></script>
 </body>
 
 </html>
