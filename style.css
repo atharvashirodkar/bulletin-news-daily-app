@@ -1,8 +1,12 @@
+/* =========================================
+   1. DESIGN TOKENS
+========================================= */
+
 :root {
     /* Primary newspaper palette */
     --news-paper: #F4F0E6;
     --news-ink: #17212B;
-    --news-white: #FFFFFF;
+    --news-white: #FFFEFA;
 
     /* Press Red family */
     --press-50: #FBE9E6;
@@ -13,126 +17,232 @@
     --press-500: #A92F27;
     --press-600: #81251F;
 
-    /* Semantic assignments */
+    /* Semantic accent colors */
     --accent-primary: var(--press-400);
     --accent-hover: var(--press-500);
     --accent-active: var(--press-600);
-
     --accent-soft-bg: var(--press-50);
     --accent-soft-text: var(--press-500);
     --accent-border: var(--press-100);
+
+    /* Neutral colors */
+    --news-border: #DED8CC;
+    --news-muted: #625D55;
+    --news-placeholder: #89847B;
 }
 
-/* Main page background */
+
+/* =========================================
+   2. GLOBAL STYLES
+========================================= */
+
 body {
     background-color: var(--news-paper);
     color: var(--news-ink);
 }
 
-/* Navbar */
-.news-navbar {
+
+/* =========================================
+   3. NEWSPAPER HEADER
+========================================= */
+
+.news-header {
     background-color: var(--news-paper);
-    border-bottom: 2px solid var(--news-ink);
-    padding: 14px 0;
+    color: var(--news-ink);
 }
 
-/* Newspaper branding */
+
+/* =========================================
+   4. MASTHEAD / BRAND
+========================================= */
+
+.news-masthead {
+    padding: 20px 0 12px;
+}
+
 .news-brand {
+    display: inline-block;
     color: var(--news-ink);
-    font-family: Georgia, serif;
-    font-size: 1.65rem;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: clamp(2rem, 4vw, 3rem);
     font-weight: 800;
-    letter-spacing: -0.8px;
+    letter-spacing: -1.5px;
+    line-height: 1.2;
+    text-decoration: none;
 }
 
 .news-brand:hover {
-    color: var(--news-red);
-}
-
-.news-brand span {
-    color: var(--news-red);
-}
-
-/* Navigation links */
-.news-navbar .nav-link {
     color: var(--news-ink);
-    font-weight: 600;
-    margin: 0 8px;
-    transition: color 0.2s ease;
 }
 
-
-/* Search input */
-.news-search .form-control {
-    background-color: #FFFFFF;
-    border: 1px solid #D6D0C4;
-    color: var(--news-ink);
-    border-radius: 5px;
-    min-width: 200px;
+.news-brand-accent {
+    width: 48px;
+    height: 3px;
+    background-color: var(--press-400);
+    margin: 8px auto;
 }
 
-.news-search .form-control:focus {
-    border-color: var(--news-red);
-    box-shadow: 0 0 0 0.2rem rgba(200, 61, 50, 0.15);
-}
-
-/* Live News badge */
-.live-badge {
-    background: var(--press-50);
-    color: var(--press-500);
-    border: 1px solid var(--press-100);
+.news-tagline {
+    color: var(--news-muted);
     font-size: 0.7rem;
-    font-weight: 800;
-    letter-spacing: 0.8px;
-    padding: 5px 10px;
-    border-radius: 4px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    margin: 0;
 }
 
-/* Search button */
+
+/* =========================================
+   5. SEARCH BAR
+========================================= */
+
+.news-search-row {
+    padding: 10px 0 18px;
+}
+
+.news-search-form {
+    width: 75%;
+    /* max-width: 680px; */
+    margin: 0 auto;
+}
+
+.news-search-form .input-group {
+    border-radius: 5px;
+    overflow: hidden;
+    transition: box-shadow 0.2s ease;
+}
+
+.news-search-icon {
+    background-color: var(--news-white);
+    border: 1px solid var(--news-border);
+    border-right: none;
+    color: var(--news-placeholder);
+    padding: 0 13px;
+}
+
+.news-search-form .form-control {
+    min-width: 0;
+    background-color: var(--news-white);
+    border: 1px solid var(--news-border);
+    border-left: none;
+    border-radius: 0;
+    color: var(--news-ink);
+    padding: 10px 8px;
+    font-size: 0.9rem;
+    box-shadow: none;
+}
+
+.news-search-form .form-control::placeholder {
+    color: var(--news-placeholder);
+}
+
+.news-search-form .form-control:focus {
+    border-color: var(--press-400);
+    box-shadow: none;
+}
+
+.news-search-form:focus-within {
+    box-shadow: 0 0 0 3px rgba(200, 61, 50, 0.12);
+}
+
 .news-search-btn {
-    background: var(--press-500);
+    background-color: var(--press-500);
     border: 1px solid var(--press-500);
     color: var(--news-white);
+    padding: 8px 20px;
+    font-weight: 600;
+    transition: background-color 0.2s ease;
 }
 
 .news-search-btn:hover {
-    background: var(--press-600);
+    background-color: var(--press-600);
     border-color: var(--press-600);
     color: var(--news-white);
 }
 
-/* Active navigation */
-.news-navbar .nav-link.active {
-    color: var(--press-400);
+
+/* =========================================
+   6. NAVIGATION
+========================================= */
+
+.news-navigation {
+    padding: 0;
+    border-top: 2px solid var(--news-ink);
+    border-bottom: 1px solid var(--news-border);
+}
+
+.news-nav-links {
+    display: flex;
+    flex-direction: row;
+    flex-grow: 1;
+    justify-content: center;
+    gap: 64px;
+}
+
+.news-nav-links .nav-link {
+    position: relative;
+    color: var(--news-ink);
+    font-size: 0.9rem;
+    font-weight: 600;
+    padding: 13px 4px;
+    transition: color 0.2s ease;
+}
+
+.news-nav-links .nav-link:hover {
+    color: var(--press-500);
+}
+
+.news-nav-links .nav-link.active {
+    color: var(--press-500);
     font-weight: 700;
 }
 
-/* Subtle hover */
-.news-navbar .nav-link:hover {
-    color: var(--press-500);
+.news-nav-links .nav-link.active::after {
+    content: "";
+    position: absolute;
+    bottom: 5px;
+    left: 4px;
+    right: 4px;
+    height: 2px;
+    background-color: var(--press-400);
 }
 
-/* Breaking news */
+
+/* =========================================
+   7. LIVE NEWS BADGE
+========================================= */
+
+.live-badge {
+    display: inline-block;
+    background-color: var(--press-50);
+    color: var(--press-500);
+    border: 1px solid var(--press-100);
+    border-radius: 4px;
+    padding: 5px 10px;
+    font-size: 0.7rem;
+    font-weight: 800;
+    letter-spacing: 0.8px;
+}
+
+
+/* =========================================
+   8. BREAKING NEWS
+========================================= */
+
 .breaking-news {
     color: var(--press-500);
+    background-color: var(--press-50);
     border-left: 3px solid var(--press-400);
-    background: var(--press-50);
 }
 
-* Mobile toggler */
-.news-navbar .navbar-toggler {
-    border-color: var(--news-ink);
-}
 
-.news-navbar .navbar-toggler:focus {
-    box-shadow: 0 0 0 0.2rem rgba(200, 61, 50, 0.2);
-}
-
+/* =========================================
+   9. CONTENT SKELETON
+========================================= */
 
 /* Skeleton card */
 .news-skeleton-card {
-    background-color: #FFFEFA;
-    border: 1px solid #DED8CC;
+    background-color: var(--news-white);
+    border: 1px solid var(--news-border);
     border-radius: 8px;
     overflow: hidden;
 }
@@ -144,10 +254,11 @@ body {
     background-color: #E8E2D7;
 }
 
-/* Common skeleton placeholders */
+/* Common placeholders */
 .news-skeleton-card .placeholder {
     border-radius: 4px;
     background-color: #DCD5C9;
+    animation: news-skeleton-pulse 1.8s ease-in-out infinite;
 }
 
 /* Category placeholder */
@@ -161,24 +272,99 @@ body {
     height: 13px;
 }
 
-/* CTA placeholder */
+/* Button placeholder */
 .news-skeleton-button {
     height: 34px;
     border-radius: 5px;
     background-color: var(--press-100) !important;
 }
 
-/* Smooth loading animation */
-.news-skeleton-card .placeholder {
-    animation: news-skeleton-pulse 1.8s ease-in-out infinite;
-}
-
+/* Skeleton animation */
 @keyframes news-skeleton-pulse {
-    0%, 100% {
+
+    0%,
+    100% {
         opacity: 0.55;
     }
 
     50% {
         opacity: 1;
+    }
+}
+
+
+/* =========================================
+   10. MOBILE NAVIGATION TOGGLER
+========================================= */
+
+.news-navigation .navbar-toggler {
+    border: 1px solid var(--news-border);
+    border-radius: 4px;
+}
+
+.news-navigation .navbar-toggler:focus {
+    box-shadow: 0 0 0 3px rgba(200, 61, 50, 0.15);
+}
+
+
+/* =========================================
+   11. RESPONSIVE DESIGN
+========================================= */
+
+/* Tablets */
+@media (max-width: 991.98px) {
+
+    .news-search-form {
+        width: 75%;
+    }
+
+    .news-nav-links {
+        gap: 20px;
+    }
+}
+
+/* Mobile navigation */
+@media (max-width: 767.98px) {
+
+    .news-nav-links {
+        gap: 0;
+        text-align: center;
+        padding: 8px 0;
+    }
+
+    .news-nav-links .nav-link {
+        padding: 10px;
+    }
+
+    .news-nav-links .nav-link.active::after {
+        display: none;
+    }
+}
+
+/* Small mobile screens */
+@media (max-width: 575.98px) {
+
+    .news-masthead {
+        padding-top: 16px;
+    }
+
+    .news-brand {
+        font-size: 2rem;
+    }
+
+    .news-search-row {
+        padding: 10px 0 15px;
+    }
+
+    .news-search-form {
+        width: 100%;
+    }
+
+    .news-search-form .form-control {
+        font-size: 0.8rem;
+    }
+
+    .news-search-btn {
+        padding: 8px 12px;
     }
 }
