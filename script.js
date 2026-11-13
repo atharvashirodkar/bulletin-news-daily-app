@@ -17,22 +17,18 @@ console.log(query, page);
 
 let content =
     `
-            <div class="col-md-4 col-sm-6 mb-4">
-                <div class="card shadow-sm">
-                    <div class="card-img-top placeholder-glow" style="height: 180px; background: #e9ecef;"></div>
-                    <div class="card-body">
-                        <h5 class="card-title placeholder-glow">
-                            <span class="placeholder col-8"></span>
-                        </h5>
-                        <p class="card-text placeholder-glow">
-                            <span class="placeholder col-12"></span>
-                            <span class="placeholder col-10"></span>
-                            <span class="placeholder col-6"></span>
-                        </p>
-                        <a href="#" class="btn btn-primary disabled placeholder col-6"></a>
-                    </div>
+        <div class="article-card">
+            <div class="skeleton image"></div>
+            <div class="skeleton content">
+                <div class="skeleton title"></div>
+                <div class="skeleton description">
+                    <div class="skeleton p line-1"></div>
+                    <div class="skeleton p line-2"></div>
+                    <div class="skeleton p line-3"></div>
                 </div>
+                <div class="skeleton skeleton-btn"></div>
             </div>
+        </div>
                     `;
 let contentRepeatation = "";
 for (let count = 0; count < 6; count++) {

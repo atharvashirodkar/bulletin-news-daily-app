@@ -16,7 +16,7 @@
 
         <div class="container-fluid px-3 px-lg-4">
 
-            <!-- 1. Newspaper Masthead -->
+            <!-- Newspaper Masthead -->
             <div class="news-masthead text-center">
                 <a href="/" class="news-brand">
                     The Bulletin Daily
@@ -27,38 +27,7 @@
                 </p>
             </div>
 
-            <!-- 2. Search Bar -->
-            <div class="news-search-row">
-
-                <form class="news-search-form" role="search" method="GET">
-
-                    <div class="input-group">
-
-                        <span class="input-group-text news-search-icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
-                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                stroke-linejoin="round" aria-hidden="true">
-                                <circle cx="11" cy="11" r="8"></circle>
-                                <path d="m21 21-4.35-4.35"></path>
-                            </svg>
-                        </span>
-
-                        <input class="form-control" type="search" name="query"
-                            placeholder="Search articles, topics and headlines..." aria-label="Search news">
-
-                        <input type="hidden" name="pageno" value="1">
-
-                        <button class="btn news-search-btn" type="submit">
-                            Search
-                        </button>
-
-                    </div>
-
-                </form>
-
-            </div>
-
-            <!-- 3. Navigation Options -->
+            <!-- Navigation Options -->
             <nav class="navbar navbar-expand-md news-navigation">
 
                 <div class="container-fluid justify-content-center p-0">
@@ -95,13 +64,42 @@
                         </ul>
                     </div>
 
+                    <!-- Search Bar -->
+                    <div class="news-search-row">
+
+                        <form class="news-search-form" role="search" method="GET">
+
+                            <div class="input-group">
+
+                                <span class="input-group-text news-search-icon">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round" aria-hidden="true">
+                                        <circle cx="11" cy="11" r="8"></circle>
+                                        <path d="m21 21-4.35-4.35"></path>
+                                    </svg>
+                                </span>
+
+                                <input class="form-control" type="search" name="query"
+                                    placeholder="Search articles, topics and headlines..." aria-label="Search news">
+
+                                <input type="hidden" name="pageno" value="1">
+
+                                <button class="btn news-search-btn" type="submit">
+                                    Search
+                                </button>
+
+                            </div>
+
+                        </form>
+                    </div>
                 </div>
             </nav>
         </div>
     </header>
 
-    <div class="container my-4">
-        <div class="row" id="content">
+    <div class="container">
+        <div class="content-container" id="content">
         </div>
     </div>
 
